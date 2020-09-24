@@ -15,6 +15,7 @@ const reviewRouter = require('./routes/reviewRoutes');
 const viewsRouter = require('./routes/viewRoutes');
 const bookingRouter = require('./routes/bookingRoutes');
 
+// Start express app
 const app = express();
 // console.log(process.env.NODE_ENV);
 
