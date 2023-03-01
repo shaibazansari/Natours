@@ -4,6 +4,7 @@ html
         block head
             meta(charset='UTF-8')
             meta(name="viewport", content="width=device-width, initial-scale=1.0")
+            meta(http-equiv="Content-Security-Policy", content="default-src 'self' https: ws: 'unsafe-inline' ; script-src 'self' https://js.stripe.com 'unsafe-inline'; connect-src 'self' https://api.stripe.com ws:; frame-src https://js.stripe.com")
             link(rel="stylesheet", href="/css/style.css")
             link(rel="shortcut icon", href="/img/favicon.png", type="image/png")
             link(rel="stylesheet", href="https://fonts.googleapis.com/css?family=Lato:300,300i,700")
@@ -24,5 +25,5 @@ html
         //- script(src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.20.0/axios.min.js")
         //- script(src="/js/mapbox.js")
         //- script(src="/js/login.js")
-        script(src='/js/stripe.min.js')
+        script(src='https://js.stripe.com/v3/')
         script(src="/js/bundle.js")
