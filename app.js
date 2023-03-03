@@ -30,7 +30,7 @@ app.use(cors())
 
 // Content Security Policy
 app.use((req, res, next) => {
-     res.setHeader("Content-Security-Policy", "default-src *; script-src *; style-src *; img-src *");
+     // res.setHeader("Content-Security-Policy", "default-src *; script-src *; style-src *; img-src *");
     next()
 })
 
