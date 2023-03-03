@@ -6,6 +6,8 @@ const mongoSanitize = require('express-mongo-sanitize')
 const xss = require('xss-clean')
 const hpp = require('hpp')
 const cookieParser = require('cookie-parser')
+const compression = require('compression');
+const cors = require('cors');
 
 const AppError = require('./utils/appError')
 const globalErrorHandler = require('./controllers/errorController')
@@ -17,12 +19,22 @@ const bookingRouter = require('./routes/bookingRoutes');
 
 // Start express app
 const app = express();
+app.enable('trust proxy');
 // console.log(process.env.NODE_ENV);
 
 app.set('view engine', 'pug')
 app.set('views', path.join(__dirname,'views'))
 
 // 1.Global Middleware
+app.use(cors())
+
+// Content Security Policy
+app.use((req, res, next) => {
+    // res.setHeader("Content-Security-Policy", "default-src *; script-src *; style-src *; img-src *");
+    next()
+})
+
+app.options('*', cors())
 
 // Serving static files
 // app.use(express.static(`${__dirname}/public`));
@@ -54,6 +66,8 @@ app.use(xss())
 app.use(hpp({
     whitelist: ['duration','ratingQuantity','ratingsAverage','maxGroupSize','difficulty','price']
 }))
+
+app.use(compression());
 
 
 // Routing
